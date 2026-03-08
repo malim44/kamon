@@ -20,6 +20,9 @@ add_todo.addEventListener('click', (e) => {
 
 shuffleBtn.onclick = () => {
   document.startViewTransition(() => {
+    [...list.children].forEach((el, i) => {
+        el.style.viewTransitionName = `item-${i}`;
+    });
     const items = [...list.children];
 
     items
