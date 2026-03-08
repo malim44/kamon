@@ -1,6 +1,8 @@
 const add_todo = document.querySelector('.add-todo')
 const todo_text = document.querySelector('.todo-text')
 const todos_list = document.querySelector('.todos-list')
+const shuffleBtn = document.querySelector('button')
+const todos = []
 
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
@@ -15,3 +17,13 @@ add_todo.addEventListener('click', (e) => {
         todo_text.value = ''
     }
 })
+
+shuffleBtn.onclick = () => {
+  document.startViewTransition(() => {
+    const items = [...list.children];
+
+    items
+      .sort(() => Math.random() - 0.5)
+      .forEach(el => list.appendChild(el));
+  });
+};
