@@ -58,6 +58,7 @@ ul.backlog {
     background-color: #8ecae6;
 }
 li {
+    display: flex;
     font-size: 3rem;
     border-radius: 2rem;
     border: 1px solid black;
@@ -65,8 +66,12 @@ li {
     padding: 2rem;
     margin: 1rem 0;
     background: #14c8ce;
-    background-image: url('./assets/Gold_coin_icon.png');
-    background-repeat: no-repeat;
-    background-position: right center; /* right side, vertically centered */
-    background-size: auto; /* keep original size */
+    justify-content: flex-end;
+    align-items: center;
+}
+li span {
+    font-size: 1rem;
+}
+li img {
+    font-size: 1rem;
 }

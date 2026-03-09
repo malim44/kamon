@@ -8,7 +8,7 @@ createApp({
             active: [],
             next: [],
             backlog: [],
-
+            counterGoldcoins: 10,    
         }
     },
     methods: {
