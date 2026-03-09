@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
-    <title>Title</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>kamOn</title>
 </head>
 <body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <button @click="changeMessage">Klick mich</button>
+    </div>
 <h1>kaMon</h1>
 <button class="firstDayOfMonth">Monatsanfang</button>
 <button class="nextDay">Nächster Tag</button>
 <button class="irgendwas">hello</button>
 <form>
-    <input type="text" class="todo-text"><button class="add-todo">+</button>
+    <input type="text" class="todo-text">
+    <button class="add-todo">+</button>
 </form>
 <ul class="active"></ul>
 <ul class="next"></ul>

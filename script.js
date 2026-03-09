@@ -1,3 +1,18 @@
+const { createApp } = Vue
+
+createApp({
+    data() {
+        return {
+            message: 'Hallo Vue über Github.dev!'
+        }
+    },
+    methods: {
+        changeMessage() {
+            this.message = 'Du hast den Text geändert!'
+        }
+    }
+}).mount('#app')
+
 const addTodoBtn = document.querySelector('.add-todo')
 const firstDayBtn = document.querySelector('.firstDayOfMonth')
 const nextDayBtn = document.querySelector('.nextDay')
