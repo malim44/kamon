@@ -20,6 +20,10 @@ form {
     border-radius: 2rem;
     width: 10rem;
 }
+div.divAroundList {
+    border: 4px solid #023047;
+    border-radius: 1rem;
+}
 label.labelForBacklog {
     position: absolute;
     top: -12px;        
@@ -34,9 +38,6 @@ label.labelForBacklog {
 ul {
     list-style-type: none;
     padding: 1rem;
-    background: #8ecae6;
-    border: 4px solid #023047;
-    border-radius: 1rem;
 }
 ul.active {
     background-color: red;
@@ -45,7 +46,7 @@ ul.next {
     background-color: yellow;
 }
 ul.backlog {
-    background-color: green;
+    background-color: #8ecae6;
 }
 li {
     font-size: 3rem;
