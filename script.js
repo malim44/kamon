@@ -6,7 +6,6 @@ createApp({
             message: 'Hallo Vue über Github.dev!',
             addTodoInpt: '',
             counterBacklogCurrent: 23,
-            counterBacklogTotal: 31, 
             active: [],
             next: [],
             backlog: [],
@@ -30,6 +29,14 @@ createApp({
         nextDay() {
             this.active = [...this.next]
             this.next = []        
+        }
+    },
+    computed: {
+        counterBacklogTotal() {
+            const today = new Date();
+            // month + 2 = the month after next month
+            // day 0 = last day of previous month → last day of next month
+            return new Date(today.getFullYear(), today.getMonth() + 2, 0).getDate();
         }
     }
 }).mount('#app')
