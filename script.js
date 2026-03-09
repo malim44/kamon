@@ -17,7 +17,7 @@ createApp({
         },
         addTodoToBacklog() {
             if(this.addTodoInpt) {
-                backlog.push(this.addTodoInpt)
+                this.backlog.push(this.addTodoInpt)
                 this.addTodoInpt = ''
             }
         }
