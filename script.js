@@ -5,6 +5,8 @@ createApp({
         return {
             message: 'Hallo Vue über Github.dev!',
             addTodoInpt: '',
+            labelBacklogCurrent: 23,
+            labelBacklogTotal: 31, 
             active: [],
             next: [],
             backlog: [],
