@@ -12,14 +12,22 @@
         <h1>{{ message }}</h1>
         <button @click="changeMessage">Klick mich</button>
         <h1>kaMon</h1>
-        <button class="firstDayOfMonth">Monatsanfang</button>
-        <button class="nextDay">Nächster Tag</button>
+        <button class="firstDayOfMonth" @click="firstDay">Monatsanfang</button>
+        <button class="nextDay" @click="nextDay">Nächster Tag</button>
         <form>
             <input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">
             <button class="add-todo" @click.prevent="addTodoToBacklog" :disabled="addTodoInpt.length < 3">+</button>
         </form>
-        <ul class="next"></ul>
-        <ul class="active"></ul>
+        <ul class="active">
+            <li v-for="(todo, index) in active" :key="index">
+                {{ todo }}
+            </li>
+        </ul>
+        <ul class="next">
+            <li v-for="(todo, index) in next" :key="index">
+                {{ todo }}
+            </li>
+        </ul>
         <ul class="backlog">
             <li v-for="(todo, index) in backlog" :key="index">
                 {{ todo }}

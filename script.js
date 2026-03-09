@@ -20,23 +20,18 @@ createApp({
                 this.backlog.push(this.addTodoInpt)
                 this.addTodoInpt = ''
             }
+        },
+        firstDay() {
+            this.next = [...this.backlog]
+            this.backlog = []            
+        },
+        nextDay() {
+            this.active = [...this.next]
+            this.next = []        
         }
     }
 }).mount('#app')
 
-const firstDayBtn = document.querySelector('.firstDayOfMonth')
-const nextDayBtn = document.querySelector('.nextDay')
-const todo_text = document.querySelector('.todo-text')
-const backlog = document.querySelector('.backlog')
-
-const todos = []
-
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
 }
-
-firstDayBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    
-})
-
