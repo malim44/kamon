@@ -65,4 +65,8 @@ li {
     padding: 2rem;
     margin: 1rem 0;
     background: #14c8ce;
+    background-image: url('./assets/Gold_coin_icon.png');
+    background-repeat: no-repeat;
+    background-position: right center; /* right side, vertically centered */
+    background-size: auto; /* keep original size */
 }
