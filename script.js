@@ -3,17 +3,27 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            message: 'Hallo Vue über Github.dev!'
+            message: 'Hallo Vue über Github.dev!',
+            addTodoInpt: '',
+            active: [],
+            next: [],
+            backlog: [],
+
         }
     },
     methods: {
         changeMessage() {
             this.message = 'Du hast den Text geändert!'
+        },
+        addTodoToBacklog() {
+            if(this.addTodoInpt) {
+                backlog.push(this.addTodoInpt)
+                this.addTodoInpt = ''
+            }
         }
     }
 }).mount('#app')
 
-const addTodoBtn = document.querySelector('.add-todo')
 const firstDayBtn = document.querySelector('.firstDayOfMonth')
 const nextDayBtn = document.querySelector('.nextDay')
 const todo_text = document.querySelector('.todo-text')
@@ -24,16 +34,6 @@ const todos = []
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
 }
-
-addTodoBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    if(todo_text.value) {
-        const todo_single = document.createElement('li')
-        todo_single.innerHTML = todo_text.value
-        backlog.appendChild(todo_single)
-        todo_text.value = ''
-    }
-})
 
 firstDayBtn.addEventListener('click', (e) => {
     e.preventDefault()
