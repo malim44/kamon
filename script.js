@@ -5,7 +5,6 @@ createApp({
         return {
             message: 'Hallo Vue über Github.dev!',
             addTodoInpt: '',
-            counterBacklogCurrent: this.backlog.length,
             active: [],
             next: [],
             backlog: [],
@@ -32,6 +31,9 @@ createApp({
         }
     },
     computed: {
+        counterBacklogCurrent() {
+            return this.backlog.length        
+        },
         counterBacklogTotal() {
             const today = new Date();
             // month + 2 = the month after next month
