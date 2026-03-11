@@ -45,7 +45,7 @@ createApp({
         },
         counterBacklogMax() {
             const today = new Date()
-            const daysOfNextMonth = this.counterBacklogMin()
+            const daysOfNextMonth = this.counterBacklogMin
             const daysOfMonthAfterNext = new Date(today.getFullYear(), today.getMonth() + 3, 0).getDate()
             return daysOfNextMonth + daysOfMonthAfterNext
         }
