@@ -49,7 +49,7 @@ ul {
     flex-direction: column;
     flex: 1;
 }
-ul:last-of-type {
+.divAroundList ul {
     border: none;
     margin: 0;
 }
