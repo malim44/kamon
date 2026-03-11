@@ -33,13 +33,11 @@
         </ul>
         <div class="divAroundList">
             <span class="counterBacklog">{{ counterBacklogMin }} / {{ counterBacklogCurrent }} / {{ counterBacklogMax }}</span>
-            <!--<ul class="backlog">-->
-            <TransitionGroup name="list" tag="ul">
+            <ul class="backlog">
                 <li v-for="(todo, index) in backlog" :key="index">
                     {{ todo }}
                 </li>
-            </TransitionGroup>    
-            <!--</ul>-->
+            </ul>
         </div>
     </div>
     <script src="script.js"></script>
