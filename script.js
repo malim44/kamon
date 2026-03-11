@@ -44,8 +44,10 @@ createApp({
             return new Date(today.getFullYear(), today.getMonth() + 2, 0).getDate();
         },
         counterBacklogMax() {
-            const today = new Date();
-            return new Date(today.getFullYear(), today.getMonth() + 3, 0).getDate();
+            const today = new Date()
+            const daysOfNextMonth = this.counterBacklogMin()
+            const daysOfMonthAfterNext = new Date(today.getFullYear(), today.getMonth() + 3, 0).getDate()
+            return daysOfNextMonth + daysOfMonthAfterNext
         }
     }
 }).mount('#app')
