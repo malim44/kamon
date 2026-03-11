@@ -35,8 +35,11 @@ createApp({
             this.next = this.backlog.splice(0, max)
         },
         nextDay() {
-            this.active = [...this.next]
-            this.next = []        
+            for (let i = this.next.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
+            }
+            this.active = this.next.splice(0, 2)
         }
     },
     computed: {
