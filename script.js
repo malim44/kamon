@@ -27,18 +27,12 @@ createApp({
             }        
         },
         firstDay() {
-            if (this.backlog.length <= this.counterBacklogMin) {
-                this.next = [...this.backlog]
-                this.backlog = []
-            } else {
-                console.log('before: ', this.backlog)
-                for (let i = this.backlog.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
-                }
-                console.log('after: ', this.backlog);
-                
+            const max = this.counterBacklogMin
+            for (let i = this.backlog.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
             }
+            this.next = this.backlog.splice(0, max)
         },
         nextDay() {
             this.active = [...this.next]
