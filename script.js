@@ -22,8 +22,8 @@ createApp({
             }
         },
         fillTodos() {
-            for(let i=1; i<30; i++){
-                this.backlog.push(i+1)
+            for(let i=1; i<=30; i++){
+                this.backlog.push(i)
             }        
         },
         firstDay() {
@@ -39,11 +39,13 @@ createApp({
         counterBacklogCurrent() {
             return this.backlog.length        
         },
-        counterBacklogTotal() {
+        counterBacklogMin() {
             const today = new Date();
-            // month + 2 = the month after next month
-            // day 0 = last day of previous month → last day of next month
             return new Date(today.getFullYear(), today.getMonth() + 2, 0).getDate();
+        },
+        counterBacklogMax() {
+            const today = new Date();
+            return new Date(today.getFullYear(), today.getMonth() + 3, 0).getDate();
         }
     }
 }).mount('#app')

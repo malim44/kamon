@@ -32,7 +32,7 @@
             </li>
         </ul>
         <div class="divAroundList">
-            <span class="counterBacklog">{{ counterBacklogCurrent }} / {{ counterBacklogTotal }}</span>
+            <span class="counterBacklog">{{ counterBacklogMin }} / {{ counterBacklogCurrent }} / {{ counterBacklogMax }}</span>
             <ul class="backlog">
                 <li v-for="(todo, index) in backlog" :key="index">
                     {{ todo }}
