@@ -91,3 +91,6 @@ li img {
     height: 90px;
     object-fit: contain;
 }
+.list-move {
+    transition: transform 0.3s ease;
+}
