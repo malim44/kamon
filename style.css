@@ -92,5 +92,5 @@ li img {
     object-fit: contain;
 }
 .list-move {
-    transition: transform 0.3s ease;
+    transition: transform 3s ease;
 }
