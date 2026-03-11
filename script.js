@@ -43,7 +43,7 @@ createApp({
                 const j = Math.floor(Math.random() * (i + 1));
                 [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
             }
-            //this.next = this.backlog.splice(0, max)
+            this.next = this.backlog.splice(0, max)
         },
         nextDay() {
             for (let i = this.next.length - 1; i > 0; i--) {
