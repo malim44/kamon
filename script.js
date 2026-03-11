@@ -28,7 +28,13 @@ createApp({
         },
         fillTodos() {
             for(let i=1; i<=30; i++){
-                this.backlog.push(i)
+                const todo = {
+                    id: i,
+                    title: i,
+                    coins: 10,
+                    prio: false    
+                }
+                this.backlog.push(todo)
             }        
         },
         firstDay() {
@@ -37,7 +43,7 @@ createApp({
                 const j = Math.floor(Math.random() * (i + 1));
                 [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
             }
-            this.next = this.backlog.splice(0, max)
+            //this.next = this.backlog.splice(0, max)
         },
         nextDay() {
             for (let i = this.next.length - 1; i > 0; i--) {
