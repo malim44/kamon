@@ -21,6 +21,11 @@ createApp({
                 this.addTodoInpt = ''
             }
         },
+        fillTodos() {
+            for(let i=1; i<30; i++){
+                this.backlog.push(i+1)
+            }        
+        },
         firstDay() {
             this.next = [...this.backlog]
             this.backlog = []            
