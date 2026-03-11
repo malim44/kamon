@@ -39,7 +39,7 @@ createApp({
                 const j = Math.floor(Math.random() * (i + 1));
                 [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
             }
-            this.active = this.next.splice(0, 2)
+            this.active.push([...this.next.splice(0, 2)]
         }
     },
     computed: {
