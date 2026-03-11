@@ -16,10 +16,15 @@ createApp({
             this.message = 'Du hast den Text geändert!'
         },
         addTodoToBacklog() {
-            if(this.addTodoInpt) {
-                this.backlog.push(this.addTodoInpt)
-                this.addTodoInpt = ''
+            const todo = {
+                title: this.addTodoInpt,
+                coins: 10,
+                prio: false    
             }
+            
+            this.backlog.push(todo)
+            this.addTodoInpt = ''
+            
         },
         fillTodos() {
             for(let i=1; i<=30; i++){
@@ -39,7 +44,8 @@ createApp({
                 const j = Math.floor(Math.random() * (i + 1));
                 [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
             }
-            this.active.push([...this.next.splice(0, 2)])
+            this.counterGoldCoins -= 2
+            this.active.push(...this.next.splice(0, 2))
         }
     },
     computed: {

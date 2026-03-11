@@ -21,21 +21,21 @@
         </form>
         <ul class="active">
             <li v-for="(todo, index) in active" :key="index">
-                {{ todo }}
+                {{ todo.title }}
                 <span>{{ counterGoldCoins }}</span>
                 <img src="./assets/Gold_coin_icon.png">
             </li>
         </ul>
         <ul class="next">
             <li v-for="(todo, index) in next" :key="index">
-                {{ todo }}
+                {{ todo.title }}
             </li>
         </ul>
         <div class="divAroundList">
             <span class="counterBacklog">{{ counterBacklogMin }} / {{ counterBacklogCurrent }} / {{ counterBacklogMax }}</span>
             <ul class="backlog">
                 <li v-for="(todo, index) in backlog" :key="index">
-                    {{ todo }}
+                    {{ todo.title }}
                 </li>
             </ul>
         </div>
