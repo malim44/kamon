@@ -17,6 +17,7 @@ createApp({
         },
         addTodoToBacklog() {
             const todo = {
+                id: crypto.randomUUID(),
                 title: this.addTodoInpt,
                 coins: 10,
                 prio: false    
@@ -29,7 +30,7 @@ createApp({
         fillTodos() {
             for(let i=1; i<=30; i++){
                 const todo = {
-                    id: i,
+                    id: crypto.randomUUID(),
                     title: i,
                     coins: 10,
                     prio: false    
