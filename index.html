@@ -9,10 +9,9 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ message }}</h1>
-        <button @click="changeMessage">Klick mich</button>
-        <h1>kaMon</h1>
         <button class="fill" @click="fillTodos">Befüllen</button>
+        <button class="shuffle" @click="shuffleBacklog">Backlog mischen</button>
+        <button class="shuffle" @click="shuffleNext">Next mischen</button>
         <button class="firstDayOfMonth" @click="firstDay">Monatsanfang</button>
         <button class="nextDay" @click="nextDay">Nächster Tag</button>
         <form>
@@ -26,11 +25,11 @@
                 <img src="./assets/Gold_coin_icon.png">
             </li>
         </ul>
-        <ul class="next">
-            <li v-for="(todo, index) in next" :key="index">
+        <transition-group name="list" tag="ul" class="next">
+            <li v-for="todo in backlog" :key="todo.id">
                 {{ todo.title }}
             </li>
-        </ul>
+        </transition-group>
         <div class="divAroundList">
             <span class="counterBacklog">{{ counterBacklogMin }} / {{ counterBacklogCurrent }} / {{ counterBacklogMax }}</span>
             <transition-group name="list" tag="ul" class="backlog">

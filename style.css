@@ -1,9 +1,9 @@
 body {
     padding: 2rem;
 }
-h1 {
-    font-family: sans-serif;
+button {
     font-size: 2rem;
+    height: 6rem;
 }
 form {
     display: flex;

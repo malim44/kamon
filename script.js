@@ -3,7 +3,6 @@ const { createApp, TransitionGroup } = Vue
 createApp({
     data() {
         return {
-            message: 'Hallo Vue über Github.dev!',
             addTodoInpt: '',
             active: [],
             next: [],
@@ -12,9 +11,6 @@ createApp({
         }
     },
     methods: {
-        changeMessage() {
-            this.message = 'Du hast den Text geändert!'
-        },
         addTodoToBacklog() {
             const todo = {
                 id: crypto.randomUUID(),
@@ -22,7 +18,6 @@ createApp({
                 coins: 10,
                 prio: false    
             }
-            
             this.backlog.push(todo)
             this.addTodoInpt = ''
             
@@ -36,6 +31,18 @@ createApp({
                     prio: false    
                 }
                 this.backlog.push(todo)
+            }        
+        },
+        shuffleBacklog() {
+            for (let i = this.backlog.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
+            }        
+        },
+        shuffleNext() {
+            for (let i = this.next.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
             }        
         },
         firstDay() {
