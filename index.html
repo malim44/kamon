@@ -26,7 +26,7 @@
             </li>
         </ul>
         <transition-group name="list" tag="ul" class="next">
-            <li v-for="todo in backlog" :key="todo.id">
+            <li v-for="todo in next" :key="todo.id">
                 {{ todo.title }}
             </li>
         </transition-group>
