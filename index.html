@@ -20,9 +20,11 @@
         </form>
         <ul class="active">
             <li v-for="(todo, index) in active" :key="index">
-                {{ todo.title }}
-                <span>{{ counterGoldCoins }}</span>
-                <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
+                <div class="title">{{ todo.title }}</div>
+                <div class="goldcoins">
+                    <span>{{ counterGoldCoins }}</span>
+                    <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
+                </div>
             </li>
         </ul>
         <transition-group name="list" tag="ul" class="next">
