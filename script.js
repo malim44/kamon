@@ -15,7 +15,7 @@ createApp({
             const todo = {
                 id: crypto.randomUUID(),
                 title: this.addTodoInpt,
-                coins: 10,
+                coins: 11,
                 prio: false    
             }
             this.backlog.push(todo)
@@ -59,6 +59,9 @@ createApp({
             }
             this.counterGoldCoins -= 2
             this.active.push(...this.next.splice(0, 2))
+            for(let i=this.active.length - 1; i > 0; i--) {
+                this.active[i].coins--
+            }
         }
     },
     computed: {

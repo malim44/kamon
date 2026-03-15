@@ -21,7 +21,7 @@
         <ul class="active">
             <li v-for="(todo, index) in active" :key="index">
                 <span class="title">{{ todo.title }}</span>
-                <span class="badge">{{ counterGoldCoins }}</span>
+                <span class="badge">{{ todo.coins }}</span>
                 <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
             </li>
         </ul>
