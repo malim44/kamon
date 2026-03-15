@@ -91,6 +91,7 @@ li {
         z-index: 1;
     }
     .badge {
+        margin-right: 30px;
         z-index: 2;
     }
     
