@@ -79,12 +79,21 @@ li {
     justify-content: space-between;
     align-items: center;
     max-height: 3rem;
-    .goldcoins {
-        display: flex;
-        flex-direction: column;
-        font-size: 3rem;
-        color: black;
+    .title {
+        flex: 1;
     }
+    .badge,
+    img {
+        position: absolute;
+        right: 0
+    }
+    img {
+        z-index: 1;
+    }
+    .badge {
+        z-index: 2;
+    }
+    
 }
 .list-move {
     transition: transform 3s ease;
