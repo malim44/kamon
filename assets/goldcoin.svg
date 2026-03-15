@@ -28,7 +28,4 @@
   <!-- Glanz -->
   <circle cx="85" cy="80" r="50" fill="url(#shine)" />
 
-  <!-- Symbol -->
-  <text x="100" y="115" text-anchor="middle" font-size="50" font-family="Arial" fill="#8c6a00">$</text>
-
 </svg>
