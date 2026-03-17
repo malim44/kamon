@@ -25,7 +25,7 @@ createApp({
                 const todo = {
                     id: crypto.randomUUID(),
                     title: i,
-                    coins: 10,
+                    coins: 12,
                     prio: false    
                 }
                 this.backlog.push(todo)
@@ -38,11 +38,8 @@ createApp({
             }        
         },
         nextDay() {
-            for (let i = this.next.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
-            }
-            this.active.push(...this.next.splice(0, 2))
+            this.shuffleBacklog()
+            this.active.push(...this.backlog.splice(0, 2))
             for(let i=this.active.length - 1; i >= 0; i--) {
                 this.active[i].coins -= 2
             }
