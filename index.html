@@ -12,9 +12,95 @@
         <button class="fill" @click="fillTodos">Befüllen</button>
         <button class="shuffle" @click="shuffleBacklog">Backlog mischen</button>
         <button class="nextDay" @click="nextDay">Nächster Tag</button>
+        <button class="add-todo" @click.prevent="showTodoForm">+</button>
         <form>
-            <!--<input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">-->
-            <button class="add-todo" @click.prevent="addTodoToBacklog">+</button>
+            <input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">
+            
+            <!-- Option 1: Nur Text -->
+            <input type="radio" name="option" value="1">
+            <label>
+                Textfeld:
+                <input type="text" name="opt1_text">
+            </label>
+            <br><br>
+
+            <!-- Option 2: Text + Datum -->
+            <input type="radio" name="option" value="2">
+            <label>
+                Text + Datum:
+                <input type="text" name="opt2_text">
+                <input type="date" name="opt2_date">
+            </label>
+            <br><br>
+
+            <!-- Option 3: Text + Datum -->
+            <input type="radio" name="option" value="3">
+            <label>
+                Text + Datum:
+                <input type="text" name="opt3_text">
+                <input type="date" name="opt3_date">
+            </label>
+            <br><br>
+
+            <!-- Option 4: 7 Checkboxen -->
+            <input type="radio" name="option" value="4">
+            <label>Checkboxen:</label><br>
+            <div style="margin-left:20px;">
+                <input type="checkbox" name="opt4_cb1"> Option 1<br>
+                <input type="checkbox" name="opt4_cb2"> Option 2<br>
+                <input type="checkbox" name="opt4_cb3"> Option 3<br>
+                <input type="checkbox" name="opt4_cb4"> Option 4<br>
+                <input type="checkbox" name="opt4_cb5"> Option 5<br>
+                <input type="checkbox" name="opt4_cb6"> Option 6<br>
+                <input type="checkbox" name="opt4_cb7"> Option 7<br>
+            </div>
+            <br>
+
+            <!-- Option 5: Select -->
+            <input type="radio" name="option" value="5">
+            <label>
+                Auswahl:
+                <select name="opt5_select">
+                <option value="">Bitte wählen</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                </select>
+            </label>
+            <br><br>
+
+            <!-- Option 6: Select + Checkboxen -->
+            <input type="radio" name="option" value="6">
+            <label>Auswahl + Checkboxen:</label><br>
+            <div style="margin-left:20px;">
+                <select name="opt6_select">
+                <option value="">Bitte wählen</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                </select><br><br>
+
+                <input type="checkbox" name="opt6_cb1"> Option 1<br>
+                <input type="checkbox" name="opt6_cb2"> Option 2<br>
+                <input type="checkbox" name="opt6_cb3"> Option 3<br>
+                <input type="checkbox" name="opt6_cb4"> Option 4<br>
+                <input type="checkbox" name="opt6_cb5"> Option 5<br>
+                <input type="checkbox" name="opt6_cb6"> Option 6<br>
+                <input type="checkbox" name="opt6_cb7"> Option 7<br>
+            </div>
+            <br>
+
+            <!-- Option 7: Freitext -->
+            <input type="radio" name="option" value="7">
+            <label>
+                Freitext:
+                <textarea name="opt7_text"></textarea>
+            </label>
+            <br><br>
+
+            <button>Abbrechen</button>
+            <button type="submit">Erstellen</button>
+
         </form>
         <ul class="active">
             <li v-for="(todo, index) in active" :key="index">
