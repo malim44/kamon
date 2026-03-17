@@ -13,8 +13,8 @@
         <button class="shuffle" @click="shuffleBacklog">Backlog mischen</button>
         <button class="nextDay" @click="nextDay">Nächster Tag</button>
         <form>
-            <input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">
-            <button class="add-todo" @click.prevent="addTodoToBacklog" :disabled="addTodoInpt.length < 3 || backlog.length >= counterBacklogMax">+</button>
+            <!--<input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">-->
+            <button class="add-todo" @click.prevent="addTodoToBacklog">+</button>
         </form>
         <ul class="active">
             <li v-for="(todo, index) in active" :key="index">
