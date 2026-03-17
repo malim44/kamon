@@ -5,9 +5,8 @@ createApp({
         return {
             addTodoInpt: '',
             active: [],
-            next: [],
-            backlog: [],
-            counterGoldCoins: 10,    
+            backlog: []
+            
         }
     },
     methods: {
@@ -38,26 +37,11 @@ createApp({
                 [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
             }        
         },
-        shuffleNext() {
-            for (let i = this.next.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
-            }        
-        },
-        firstDay() {
-            const max = this.counterBacklogMin
-            for (let i = this.backlog.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [this.backlog[i], this.backlog[j]] = [this.backlog[j], this.backlog[i]];
-            }
-            this.next = this.backlog.splice(0, max)
-        },
         nextDay() {
             for (let i = this.next.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [this.next[i], this.next[j]] = [this.next[j], this.next[i]];
             }
-            this.counterGoldCoins -= 2
             this.active.push(...this.next.splice(0, 2))
             for(let i=this.active.length - 1; i >= 0; i--) {
                 this.active[i].coins -= 2
@@ -65,19 +49,7 @@ createApp({
         }
     },
     computed: {
-        counterBacklogCurrent() {
-            return this.backlog.length        
-        },
-        counterBacklogMin() {
-            const today = new Date();
-            return new Date(today.getFullYear(), today.getMonth() + 2, 0).getDate();
-        },
-        counterBacklogMax() {
-            const today = new Date()
-            const daysOfNextMonth = this.counterBacklogMin
-            const daysOfMonthAfterNext = new Date(today.getFullYear(), today.getMonth() + 3, 0).getDate()
-            return daysOfNextMonth + daysOfMonthAfterNext
-        }
+        
     }
 }).mount('#app')
 

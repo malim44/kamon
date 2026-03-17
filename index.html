@@ -25,18 +25,11 @@
                 <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
             </li>
         </ul>
-        <transition-group name="list" tag="ul" class="next">
-            <li v-for="todo in next" :key="todo.id">
+        <transition-group name="list" tag="ul" class="backlog">
+            <li v-for="todo in backlog" :key="todo.id">
                 {{ todo.title }}
             </li>
         </transition-group>
-        <div class="divAroundList">
-            <span class="counterBacklog">{{ counterBacklogMin }} / {{ counterBacklogCurrent }} / {{ counterBacklogMax }}</span>
-            <transition-group name="list" tag="ul" class="backlog">
-                <li v-for="todo in backlog" :key="todo.id">
-                    {{ todo.title }}
-                </li>
-            </transition-group>
         </div>
     </div>
     <script src="script.js"></script>
