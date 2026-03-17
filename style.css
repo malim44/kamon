@@ -5,15 +5,11 @@ button {
     font-size: 2rem;
     height: 6rem;
 }
-form {
-    display: flex;
-    gap: 2rem;
-}
 .todo-text {
+    display: block;
     padding: 2rem;
     font-size: 3rem;
     border-radius: 2rem;
-    flex: 9;
 }
 .add-todo {
     font-size: 3rem;
