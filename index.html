@@ -9,11 +9,25 @@
 </head>
 <body>
     <div id="app">
-        <button class="fill" @click="fillTodos">Befüllen</button>
-        <button class="shuffle" @click="shuffleBacklog">Backlog mischen</button>
-        <button class="nextDay" @click="nextDay">Nächster Tag</button>
-        <button class="add-todo" @click.prevent="showTodoForm">+</button>
-        <form>
+        <div class="todo-area">
+            <button class="fill" @click="fillTodos">Befüllen</button>
+            <button class="shuffle" @click="shuffleBacklog">Backlog mischen</button>
+            <button class="nextDay" @click="nextDay">Nächster Tag</button>
+            <button class="add-todo" @click="showTodoForm">+</button>
+            <ul class="active">
+                <li v-for="(todo, index) in active" :key="index">
+                    <span class="title">{{ todo.title }}</span>
+                    <span class="badge">{{ todo.coins }}</span>
+                    <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
+                </li>
+            </ul>
+            <transition-group name="list" tag="ul" class="backlog">
+                <li v-for="todo in backlog" :key="todo.id">
+                    {{ todo.title }}
+                </li>
+            </transition-group>
+        </div>
+        <form class="todoForm">
             <input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">
             
             <!-- Option 1: Nur Text -->
@@ -100,19 +114,6 @@
             <button type="submit">Erstellen</button>
 
         </form>
-        <ul class="active">
-            <li v-for="(todo, index) in active" :key="index">
-                <span class="title">{{ todo.title }}</span>
-                <span class="badge">{{ todo.coins }}</span>
-                <img src="./assets/goldcoin.svg" alt="goldmuenze" width="90">
-            </li>
-        </ul>
-        <transition-group name="list" tag="ul" class="backlog">
-            <li v-for="todo in backlog" :key="todo.id">
-                {{ todo.title }}
-            </li>
-        </transition-group>
-        </div>
     </div>
     <script src="script.js"></script>
 </body>

@@ -1,10 +1,11 @@
-body {
+.todo-area {
     padding: 2rem;
 }
 button {
     font-size: 2rem;
     height: 6rem;
 }
+
 .todo-text {
     display: block;
     padding: 2rem;
@@ -90,7 +91,12 @@ li {
         margin-right: 30px;
         z-index: 2;
     }
-    
+}
+.todoForm {
+    position: absolute;
+    width: 100%;
+    font-size: 3rem;
+    background: beige;
 }
 .list-move {
     transition: transform 3s ease;
