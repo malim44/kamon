@@ -8,9 +8,11 @@ button {
 
 .todo-text {
     display: block;
+    width: 100%;
     padding: 2rem;
     font-size: 3rem;
     border-radius: 2rem;
+    box-sizing: border-box;
 }
 .add-todo {
     font-size: 3rem;
@@ -94,10 +96,66 @@ li {
 }
 .todoForm {
     position: absolute;
+    top: 0;
     width: 100%;
+    padding: 2rem;
     font-size: 3rem;
     background: beige;
 }
+
+/* Container */
+.radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+/* Hide default radio */
+.radio input {
+  display: none;
+}
+
+/* Custom circle */
+.custom-radio {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Inner dot */
+.custom-radio::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #007bff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+/* Checked state */
+.radio input:checked + .custom-radio {
+  border-color: #007bff;
+}
+
+.radio input:checked + .custom-radio::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Hover effect */
+.radio:hover .custom-radio {
+  border-color: #007bff;
+}
+
 .list-move {
     transition: transform 3s ease;
 }

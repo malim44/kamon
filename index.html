@@ -31,8 +31,11 @@
             <input type="text" class="todo-text" v-model.trim="addTodoInpt" placeholder="Todo eingeben">
             
             <!-- Option 1: Nur Text -->
-            <input type="radio" name="option" value="1">
-            <label>Einmalig</label>
+            <label class="radio">
+                <input type="radio" name="option" value="1">
+                <span class="custom-radio"></span>
+                Einmalig
+            </label>
             <br><br>
 
             <!-- Option 2: Text + Datum -->
