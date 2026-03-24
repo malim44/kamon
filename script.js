@@ -5,7 +5,7 @@ createApp({
         return {
             addTodoInpt: '',
             active: [],
-            backlog: []
+            backlog: [],
             
             title: '',
             type: 'einmalig',
