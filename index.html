@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <link rel="manifest" href="manifest.json">
@@ -28,397 +28,105 @@
             </transition-group>
         </div>
         <form class="todoForm">
-            
-            <!-- Begin Formular  -->
 
-            <!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Todo App UI</title>
-  <script src="https://unpkg.com/vue@3"></script>
+            <!-- Titel -->
+            <div class="group">
+            <input class="title-input" type="text" v-model="title" placeholder="Todo eingeben..." />
+            </div>
 
-  <style>
-    body {
-      font-family: Arial;
-      padding: 40px;
-      background: #f5f5f5;
-    }
+            <!-- Typ -->
+            <div class="group">
+            <div class="option-container">
+                <div class="option" :class="{ active: type === 'einmalig' }" @click="type = 'einmalig'">
+                Einmalig
+                </div>
+                <div class="option" :class="{ active: type === 'wiederholend' }" @click="type = 'wiederholend'">
+                Wiederholend
+                </div>
+            </div>
+            </div>
 
-    .group {
-      margin-bottom: 20px;
-    }
+            <!-- Status -->
+            <div class="group">
+            <div class="option-container">
+                <div class="option" :class="{ active: status === 'backlog' }" @click="status = 'backlog'">
+                Backlog
+                </div>
+                <div class="option" :class="{ active: status === 'active' }" @click="status = 'active'">
+                Active
+                </div>
+            </div>
+            </div>
 
-    .option-container {
-      display: flex;
-      width: 360px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid #bbb;
-      background: #e9e9e9;
-    }
+            <!-- Timing -->
+            <div class="group" v-if="type === 'einmalig'">
+            <div class="option-container">
+                <div class="option" :class="{ active: timing === 'irgendwann' }" @click="timing = 'irgendwann'">
+                Irgendwann
+                </div>
+                <div class="option" :class="{ active: timing === 'exakt' }" @click="timing = 'exakt'">
+                Exakt am
+                </div>
+                <div class="option" :class="{ active: timing === 'spaetestens' }" @click="timing = 'spaetestens'">
+                Spätestens am
+                </div>
+            </div>
 
-    .option {
-      flex: 1;
-      padding: 14px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.15s ease;
-      font-size: 14px;
-    }
+            <div v-if="timing === 'exakt' || timing === 'spaetestens'">
+                <input type="date" v-model="date" :min="tomorrow">
+            </div>
+            </div>
 
-    .option + .option {
-      border-left: 1px solid #bbb;
-    }
+            <!-- Wiederholung -->
+            <div class="group" v-if="type === 'wiederholend'">
+            <div class="option-container">
+                <div class="option" :class="{ active: repeat === 'tage' }" @click="repeat = 'tage'">
+                Jeden x Tag
+                </div>
+                <div class="option" :class="{ active: repeat === 'wochen' }" @click="repeat = 'wochen'">
+                Alle x Wochen
+                </div>
+                <div class="option" :class="{ active: repeat === 'wochentage' }" @click="repeat = 'wochentage'">
+                Wochentage
+                </div>
+            </div>
 
-    .option:hover {
-      background: #dedede;
-    }
+            <div v-if="repeat === 'tage'">
+                <input type="number" min="1" v-model="repeatValue">
+            </div>
 
-    .option.active {
-      background: #d0d0d0;
-      box-shadow:
-        inset 3px 3px 6px rgba(0,0,0,0.2),
-        inset -3px -3px 6px rgba(255,255,255,0.7);
-    }
+            <div v-if="repeat === 'wochen'">
+                <input type="number" min="1" v-model="repeatValue">
+            </div>
 
-    .option:active {
-      transform: scale(0.98);
-    }
+            <div v-if="repeat === 'wochentage'">
+                <div class="weekday-container">
+                <div class="weekday" :class="{ active: weekdays.includes('mo') }" @click="toggleWeekday('mo')">Mo</div>
+                <div class="weekday" :class="{ active: weekdays.includes('di') }" @click="toggleWeekday('di')">Di</div>
+                <div class="weekday" :class="{ active: weekdays.includes('mi') }" @click="toggleWeekday('mi')">Mi</div>
+                <div class="weekday" :class="{ active: weekdays.includes('do') }" @click="toggleWeekday('do')">Do</div>
+                <div class="weekday" :class="{ active: weekdays.includes('fr') }" @click="toggleWeekday('fr')">Fr</div>
+                <div class="weekday" :class="{ active: weekdays.includes('sa') }" @click="toggleWeekday('sa')">Sa</div>
+                <div class="weekday" :class="{ active: weekdays.includes('so') }" @click="toggleWeekday('so')">So</div>
+                </div>
+            </div>
+            </div>
 
-    .title-input {
-      width: 360px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid #bbb;
-      background: #e9e9e9;
-      font-size: 16px;
-      outline: none;
-      box-sizing: border-box;
-    }
+            <!-- Anmerkungen -->
+            <div class="group">
+            <label class="textarea-label">Anmerkungen</label>
+            <textarea class="textarea" v-model="notes"></textarea>
+            </div>
 
-    .title-input:focus {
-      box-shadow:
-        inset 2px 2px 5px rgba(0,0,0,0.15),
-        inset -2px -2px 5px rgba(255,255,255,0.7);
-    }
+            <!-- Buttons -->
+            <div class="group buttons">
+            <button class="btn cancel" @click="cancel">Abbrechen</button>
+            <button class="btn create" @click="createTodo">Erstellen</button>
+            </div>
 
-    .textarea-label {
-      margin-bottom: 5px;
-      display: block;
-      font-size: 14px;
-    }
-
-    .textarea {
-      width: 360px;
-      min-height: 100px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid #bbb;
-      background: #e9e9e9;
-      font-size: 14px;
-      resize: vertical;
-      box-sizing: border-box;
-      outline: none;
-    }
-
-    .textarea:focus {
-      box-shadow:
-        inset 2px 2px 5px rgba(0,0,0,0.15),
-        inset -2px -2px 5px rgba(255,255,255,0.7);
-    }
-
-    input[type="date"],
-    input[type="number"] {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 200px;
-      margin-top: 5px;
-    }
-
-    .weekday-container {
-      display: flex;
-      width: 360px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid #bbb;
-      background: #e9e9e9;
-      margin-top: 10px;
-    }
-
-    .weekday {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.15s ease;
-      font-size: 13px;
-    }
-
-    .weekday + .weekday {
-      border-left: 1px solid #bbb;
-    }
-
-    .weekday.active {
-      background: #d0d0d0;
-      box-shadow:
-        inset 2px 2px 5px rgba(0,0,0,0.2),
-        inset -2px -2px 5px rgba(255,255,255,0.7);
-    }
-
-    .weekday:hover {
-      background: #dedede;
-    }
-
-    .weekday:active {
-      transform: scale(0.97);
-    }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-      width: 360px;
-    }
-
-    .btn {
-      flex: 1;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid #bbb;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.15s ease;
-    }
-
-    .btn:active {
-      transform: scale(0.98);
-    }
-
-    .cancel {
-      background: #e9e9e9;
-    }
-
-    .cancel:hover {
-      background: #dedede;
-    }
-
-    .create {
-      background: #d0d0d0;
-      box-shadow:
-        inset 2px 2px 5px rgba(0,0,0,0.15),
-        inset -2px -2px 5px rgba(255,255,255,0.7);
-    }
-
-    .create:hover {
-      background: #c8c8c8;
-    }
-
-    p {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app">
-
-    <!-- Titel -->
-    <div class="group">
-      <input class="title-input" type="text" v-model="title" placeholder="Todo eingeben..." />
-    </div>
-
-    <!-- Typ -->
-    <div class="group">
-      <div class="option-container">
-        <div class="option" :class="{ active: type === 'einmalig' }" @click="type = 'einmalig'">
-          Einmalig
-        </div>
-        <div class="option" :class="{ active: type === 'wiederholend' }" @click="type = 'wiederholend'">
-          Wiederholend
-        </div>
-      </div>
-    </div>
-
-    <!-- Status -->
-    <div class="group">
-      <div class="option-container">
-        <div class="option" :class="{ active: status === 'backlog' }" @click="status = 'backlog'">
-          Backlog
-        </div>
-        <div class="option" :class="{ active: status === 'active' }" @click="status = 'active'">
-          Active
-        </div>
-      </div>
-    </div>
-
-    <!-- Timing -->
-    <div class="group" v-if="type === 'einmalig'">
-      <div class="option-container">
-        <div class="option" :class="{ active: timing === 'irgendwann' }" @click="timing = 'irgendwann'">
-          Irgendwann
-        </div>
-        <div class="option" :class="{ active: timing === 'exakt' }" @click="timing = 'exakt'">
-          Exakt am
-        </div>
-        <div class="option" :class="{ active: timing === 'spaetestens' }" @click="timing = 'spaetestens'">
-          Spätestens am
-        </div>
-      </div>
-
-      <div v-if="timing === 'exakt' || timing === 'spaetestens'">
-        <input type="date" v-model="date" :min="tomorrow">
-      </div>
-    </div>
-
-    <!-- Wiederholung -->
-    <div class="group" v-if="type === 'wiederholend'">
-      <div class="option-container">
-        <div class="option" :class="{ active: repeat === 'tage' }" @click="repeat = 'tage'">
-          Jeden x Tag
-        </div>
-        <div class="option" :class="{ active: repeat === 'wochen' }" @click="repeat = 'wochen'">
-          Alle x Wochen
-        </div>
-        <div class="option" :class="{ active: repeat === 'wochentage' }" @click="repeat = 'wochentage'">
-          Wochentage
-        </div>
-      </div>
-
-      <div v-if="repeat === 'tage'">
-        <input type="number" min="1" v-model="repeatValue">
-      </div>
-
-      <div v-if="repeat === 'wochen'">
-        <input type="number" min="1" v-model="repeatValue">
-      </div>
-
-      <div v-if="repeat === 'wochentage'">
-        <div class="weekday-container">
-          <div class="weekday" :class="{ active: weekdays.includes('mo') }" @click="toggleWeekday('mo')">Mo</div>
-          <div class="weekday" :class="{ active: weekdays.includes('di') }" @click="toggleWeekday('di')">Di</div>
-          <div class="weekday" :class="{ active: weekdays.includes('mi') }" @click="toggleWeekday('mi')">Mi</div>
-          <div class="weekday" :class="{ active: weekdays.includes('do') }" @click="toggleWeekday('do')">Do</div>
-          <div class="weekday" :class="{ active: weekdays.includes('fr') }" @click="toggleWeekday('fr')">Fr</div>
-          <div class="weekday" :class="{ active: weekdays.includes('sa') }" @click="toggleWeekday('sa')">Sa</div>
-          <div class="weekday" :class="{ active: weekdays.includes('so') }" @click="toggleWeekday('so')">So</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Anmerkungen -->
-    <div class="group">
-      <label class="textarea-label">Anmerkungen</label>
-      <textarea class="textarea" v-model="notes"></textarea>
-    </div>
-
-    <!-- Buttons -->
-    <div class="group buttons">
-      <button class="btn cancel" @click="cancel">Abbrechen</button>
-      <button class="btn create" @click="createTodo">Erstellen</button>
-    </div>
-
-    <p>
-      {{ title }} | {{ type }} | {{ status }} | {{ timing }} | {{ date }} | {{ repeat }} | {{ repeatValue }} | {{ weekdays }} | {{ notes }}
-    </p>
-
-  </div>
-
-  <script>
-    Vue.createApp({
-      data() {
-        return {
-          title: '',
-          type: 'einmalig',
-          status: 'backlog',
-          timing: 'irgendwann',
-          date: this.getTomorrowDate(),
-
-          repeat: 'tage',
-          repeatValue: 1,
-          weekdays: [],
-
-          notes: '',
-          tomorrow: this.getTomorrowDate()
-        };
-      },
-
-      methods: {
-        getTomorrowDate() {
-          const today = new Date();
-          today.setDate(today.getDate() + 1);
-          return today.toISOString().split('T')[0];
-        },
-
-        toggleWeekday(day) {
-          if (this.weekdays.includes(day)) {
-            this.weekdays = this.weekdays.filter(d => d !== day);
-          } else {
-            this.weekdays.push(day);
-          }
-        },
-
-        cancel() {
-          this.title = '';
-          this.type = 'einmalig';
-          this.status = 'backlog';
-          this.timing = 'irgendwann';
-          this.date = this.getTomorrowDate();
-          this.repeat = 'tage';
-          this.repeatValue = 1;
-          this.weekdays = [];
-          this.notes = '';
-        },
-
-        createTodo() {
-          const todo = {
-            title: this.title,
-            type: this.type,
-            status: this.status,
-            timing: this.timing,
-            date: this.date,
-            repeat: this.repeat,
-            repeatValue: this.repeatValue,
-            weekdays: this.weekdays,
-            notes: this.notes
-          };
-
-          console.log("Todo erstellt:", todo);
-          alert("Todo erstellt! (siehe Konsole)");
-        }
-      },
-
-      watch: {
-        type(newVal) {
-          if (newVal !== 'einmalig') {
-            this.timing = 'irgendwann';
-            this.date = '';
-          } else {
-            this.date = this.getTomorrowDate();
-          }
-        },
-
-        timing(newVal) {
-          if (newVal === 'exakt' || newVal === 'spaetestens') {
-            if (!this.date) {
-              this.date = this.getTomorrowDate();
-            }
-          } else {
-            this.date = '';
-          }
-        }
-      }
-    }).mount('#app');
-  </script>
-
-</body>
-</html>
-
-
-
-            <!-- Ende Formular  -->
+            <p>
+            {{ title }} | {{ type }} | {{ status }} | {{ timing }} | {{ date }} | {{ repeat }} | {{ repeatValue }} | {{ weekdays }} | {{ notes }}
+            </p>
 
         </form>
     </div>
